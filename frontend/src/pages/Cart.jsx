@@ -5,9 +5,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Title from '../components/Title';
 import { assets } from '../assets/assets';
+import CartTotal from '../components/CartTotal';
 
 const Cart = () => {
-  const {products , currency , cartItems , updateQuantity} = useContext(ShopContext); 
+  const {products , currency , cartItems , updateQuantity , navigate} = useContext(ShopContext); 
    const [cartData, setCartData] = useState([]);
 
    useEffect(() => {
@@ -36,6 +37,9 @@ const Cart = () => {
           cartData.length > 0 ? (
             cartData.map((item, index) => {
               let productData = products.find((product) => product._id === item._id);
+              if (!productData) {
+                return null;
+              }
               return (
                 <div key={index} className='flex items-center  gap-4 py-4 border-b'>
                   <img src={productData.image[0]} alt={productData.name} className='w-16 h-16 object-cover'/>
@@ -57,6 +61,17 @@ const Cart = () => {
         }
       </div>
 
+      <div className='flex justify-end my-20'>
+        <div className='w-full sm:w-112.5'>
+          <CartTotal />
+          <div className='w-full text-end'>
+            <button className='cursor-pointer bg-black text-white text-sm px-4 py-2 mt-4 rounded' onClick={() => navigate('/placeorder')}>Proceed to Checkout</button>
+          </div>
+
+
+        </div>
+
+      </div>
     </div>
   )
 }
