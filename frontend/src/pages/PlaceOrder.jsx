@@ -7,7 +7,8 @@ import { useContext } from 'react'
 import { ShopContext } from '../context/ShopContext'
 
 const PlaceOrder = () => {
-  
+
+  const {navigate} = useContext(ShopContext);
   const [method , setMethod] = useState("cod")
   
   return (
@@ -62,6 +63,11 @@ const PlaceOrder = () => {
               <p className={`min-w-3 h-3 border rounded-full ${method === "cod" ? "bg-emerald-500" : ""}`}></p>
                <p className='text-gray-500 text-sm font-medium mx-4'>CASH ON DELIVERY</p>
              </div>
+          </div>
+
+          <div className='w-full text-end mt-8'>
+            <button onClick={()=> navigate('/orders')} className='bg-black cursor-pointer text-white px-16 gap-2 rounded py-3 text-sm '>PLACE ORDER</button>
+
           </div>
 
         </div>
