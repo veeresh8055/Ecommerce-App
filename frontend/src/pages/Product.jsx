@@ -12,7 +12,6 @@ const Product = () => {
     products.map((item)=>{
       if(item._id === productId){
         setProductData(item);
-        console.log(item);
         return null ; // to avoid warning of array map function that expects return value 
        }
     } )
