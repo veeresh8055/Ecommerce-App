@@ -3,8 +3,12 @@ import { useState } from 'react'
 
 const Login = () => {
   const [currentState, setCurrentState] = useState("Log In");
+  const onSubmitHandler = async (e)=>{
+    e.preventDefault()
+  }
+
   return (
-     <form className='flex flex-col items-center -[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-400'>
+     <form onSubmit={onSubmitHandler} className='flex flex-col items-center -[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-400'>
       
       <div className='inline-flex items-center gap-2 mb-2 mt-10'>
         <p className='prata-regular text-3xl'>{currentState}</p>
@@ -22,6 +26,7 @@ const Login = () => {
           : <p onClick={()=>setCurrentState("Login")} className='cursor-pointer' >Login Here </p>
          }
       </div>
+      <button type='submit' className='bg-black text-white font-light px-8 py-2 mt-4 rounded cursor-pointer' >{currentState === "Login" ? "SignIn" : "Sign Up"}</button>
      </form>
   )
 }
